@@ -1,0 +1,526 @@
+gzb:PRIMARY> db.ucCallRecord.find({ $and: [ { beginTime: { $gte: 1548000000000 ,$lte: 1550764799000 } },{ tenementId: { $in: [ "880001" ] } },{ direction: "in" }, { trunkId: "SIPT_4_880001"
+ }, { calling: /^.*290727.*$/ }, { called: /^.*1369.*$/ },  { wireNumber: /^.*0551.*$/ } ] }).limit(15).explain('queryPlanner');
+{
+        "queryPlanner" : {
+                "plannerVersion" : 1,
+                "namespace" : "gzbsms.ucCallRecord",
+                "indexFilterSet" : false,
+                "parsedQuery" : {
+                        "$and" : [
+                                {
+                                        "direction" : {
+                                                "$eq" : "in"
+                                        }
+                                },
+                                {
+                                        "tenementId" : {
+                                                "$eq" : "880001"
+                                        }
+                                },
+                                {
+                                        "trunkId" : {
+                                                "$eq" : "SIPT_4_880001"
+                                        }
+                                },
+                                {
+                                        "beginTime" : {
+                                                "$lte" : 1550764799000
+                                        }
+                                },
+                                {
+                                        "beginTime" : {
+                                                "$gte" : 1548000000000
+                                        }
+                                },
+                                {
+                                        "called" : {
+                                                "$regex" : "^.*1369.*$"
+                                        }
+                                },
+                                {
+                                        "calling" : {
+                                                "$regex" : "^.*290727.*$"
+                                        }
+                                },
+                                {
+                                        "wireNumber" : {
+                                                "$regex" : "^.*0551.*$"
+                                        }
+                                }
+                        ]
+                },
+                "winningPlan" : {
+                        "stage" : "LIMIT",
+                        "limitAmount" : 15,
+                        "inputStage" : {
+                                "stage" : "FETCH",
+                                "filter" : {
+                                        "$and" : [
+                                                {
+                                                        "tenementId" : {
+                                                                "$eq" : "880001"
+                                                        }
+                                                },
+                                                {
+                                                        "trunkId" : {
+                                                                "$eq" : "SIPT_4_880001"
+                                                        }
+                                                },
+                                                {
+                                                        "beginTime" : {
+                                                                "$lte" : 1550764799000
+                                                        }
+                                                },
+                                                {
+                                                        "beginTime" : {
+                                                                "$gte" : 1548000000000
+                                                        }
+                                                },
+                                                {
+                                                        "called" : {
+                                                                "$regex" : "^.*1369.*$"
+                                                        }
+                                                },
+                                                {
+                                                        "calling" : {
+                                                                "$regex" : "^.*290727.*$"
+                                                        }
+                                                },
+                                                {
+                                                        "wireNumber" : {
+                                                                "$regex" : "^.*0551.*$"
+                                                        }
+                                                }
+                                        ]
+                                },
+                                "inputStage" : {
+                                        "stage" : "IXSCAN",
+                                        "keyPattern" : {
+                                                "direction" : 1
+                                        },
+                                        "indexName" : "direction",
+                                        "isMultiKey" : false,
+                                        "multiKeyPaths" : {
+                                                "direction" : [ ]
+                                        },
+                                        "isUnique" : false,
+                                        "isSparse" : false,
+                                        "isPartial" : false,
+                                        "indexVersion" : 2,
+                                        "direction" : "forward",
+                                        "indexBounds" : {
+                                                "direction" : [
+                                                        "[\"in\", \"in\"]"
+                                                ]
+                                        }
+                                }
+                        }
+                },
+                "rejectedPlans" : [
+                        {
+                                "stage" : "LIMIT",
+                                "limitAmount" : 15,
+                                "inputStage" : {
+                                        "stage" : "FETCH",
+                                        "filter" : {
+                                                "$and" : [
+                                                        {
+                                                                "direction" : {
+                                                                        "$eq" : "in"
+                                                                }
+                                                        },
+                                                        {
+                                                                "trunkId" : {
+                                                                        "$eq" : "SIPT_4_880001"
+                                                                }
+                                                        },
+                                                        {
+                                                                "called" : {
+                                                                        "$regex" : "^.*1369.*$"
+                                                                }
+                                                        },
+                                                        {
+                                                                "calling" : {
+                                                                        "$regex" : "^.*290727.*$"
+                                                                }
+                                                        },
+                                                        {
+                                                                "wireNumber" : {
+                                                                        "$regex" : "^.*0551.*$"
+                                                                }
+                                                        }
+                                                ]
+                                        },
+                                        "inputStage" : {
+                                                "stage" : "IXSCAN",
+                                                "keyPattern" : {
+                                                        "beginTime" : 1,
+                                                        "tenementId" : 1
+                                                },
+                                                "indexName" : "callRecord_beginTime_tenementId_idx",
+                                                "isMultiKey" : false,
+                                                "multiKeyPaths" : {
+                                                        "beginTime" : [ ],
+                                                        "tenementId" : [ ]
+                                                },
+                                                "isUnique" : false,
+                                                "isSparse" : false,
+                                                "isPartial" : false,
+                                                "indexVersion" : 2,
+                                                "direction" : "forward",
+                                                "indexBounds" : {
+                                                        "beginTime" : [
+                                                                "[1548000000000.0, 1550764799000.0]"
+                                                        ],
+                                                        "tenementId" : [
+                                                                "[\"880001\", \"880001\"]"
+                                                        ]
+                                                }
+                                        }
+                                }
+                        },
+                        {
+                                "stage" : "LIMIT",
+                                "limitAmount" : 15,
+                                "inputStage" : {
+                                        "stage" : "FETCH",
+                                        "filter" : {
+                                                "$and" : [
+                                                        {
+                                                                "direction" : {
+                                                                        "$eq" : "in"
+                                                                }
+                                                        },
+                                                        {
+                                                                "trunkId" : {
+                                                                        "$eq" : "SIPT_4_880001"
+                                                                }
+                                                        },
+                                                        {
+                                                                "called" : {
+                                                                        "$regex" : "^.*1369.*$"
+                                                                }
+                                                        },
+                                                        {
+                                                                "calling" : {
+                                                                        "$regex" : "^.*290727.*$"
+                                                                }
+                                                        },
+                                                        {
+                                                                "wireNumber" : {
+                                                                        "$regex" : "^.*0551.*$"
+                                                                }
+                                                        }
+                                                ]
+                                        },
+                                        "inputStage" : {
+                                                "stage" : "IXSCAN",
+                                                "keyPattern" : {
+                                                        "beginTime" : 1,
+                                                        "endTime" : 1,
+                                                        "tenementId" : 1
+                                                },
+                                                "indexName" : "callRecord_beginTime_endTime_tenementId_idx",
+                                                "isMultiKey" : false,
+                                                "multiKeyPaths" : {
+                                                        "beginTime" : [ ],
+                                                        "endTime" : [ ],
+                                                        "tenementId" : [ ]
+                                                },
+                                                "isUnique" : false,
+                                                "isSparse" : false,
+                                                "isPartial" : false,
+                                                "indexVersion" : 2,
+                                                "direction" : "forward",
+                                                "indexBounds" : {
+                                                        "beginTime" : [
+                                                                "[1548000000000.0, 1550764799000.0]"
+                                                        ],
+                                                        "endTime" : [
+                                                                "[MinKey, MaxKey]"
+                                                        ],
+                                                        "tenementId" : [
+                                                                "[\"880001\", \"880001\"]"
+                                                        ]
+                                                }
+                                        }
+                                }
+                        },
+                        {
+                                "stage" : "LIMIT",
+                                "limitAmount" : 15,
+                                "inputStage" : {
+                                        "stage" : "FETCH",
+                                        "filter" : {
+                                                "$and" : [
+                                                        {
+                                                                "direction" : {
+                                                                        "$eq" : "in"
+                                                                }
+                                                        },
+                                                        {
+                                                                "tenementId" : {
+                                                                        "$eq" : "880001"
+                                                                }
+                                                        },
+                                                        {
+                                                                "beginTime" : {
+                                                                        "$lte" : 1550764799000
+                                                                }
+                                                        },
+                                                        {
+                                                                "beginTime" : {
+                                                                        "$gte" : 1548000000000
+                                                                }
+                                                        },
+                                                        {
+                                                                "called" : {
+                                                                        "$regex" : "^.*1369.*$"
+                                                                }
+                                                        },
+                                                        {
+                                                                "calling" : {
+                                                                        "$regex" : "^.*290727.*$"
+                                                                }
+                                                        },
+                                                        {
+                                                                "wireNumber" : {
+                                                                        "$regex" : "^.*0551.*$"
+                                                                }
+                                                        }
+                                                ]
+                                        },
+                                        "inputStage" : {
+                                                "stage" : "IXSCAN",
+                                                "keyPattern" : {
+                                                        "trunkId" : 1
+                                                },
+                                                "indexName" : "trunkId",
+                                                "isMultiKey" : false,
+                                                "multiKeyPaths" : {
+                                                        "trunkId" : [ ]
+                                                },
+                                                "isUnique" : false,
+                                                "isSparse" : false,
+                                                "isPartial" : false,
+                                                "indexVersion" : 2,
+                                                "direction" : "forward",
+                                                "indexBounds" : {
+                                                        "trunkId" : [
+                                                                "[\"SIPT_4_880001\", \"SIPT_4_880001\"]"
+                                                        ]
+                                                }
+                                        }
+                                }
+                        },
+                        {
+                                "stage" : "LIMIT",
+                                "limitAmount" : 15,
+                                "inputStage" : {
+                                        "stage" : "FETCH",
+                                        "filter" : {
+                                                "$and" : [
+                                                        {
+                                                                "tenementId" : {
+                                                                        "$eq" : "880001"
+                                                                }
+                                                        },
+                                                        {
+                                                                "beginTime" : {
+                                                                        "$lte" : 1550764799000
+                                                                }
+                                                        },
+                                                        {
+                                                                "beginTime" : {
+                                                                        "$gte" : 1548000000000
+                                                                }
+                                                        },
+                                                        {
+                                                                "called" : {
+                                                                        "$regex" : "^.*1369.*$"
+                                                                }
+                                                        },
+                                                        {
+                                                                "calling" : {
+                                                                        "$regex" : "^.*290727.*$"
+                                                                }
+                                                        },
+                                                        {
+                                                                "wireNumber" : {
+                                                                        "$regex" : "^.*0551.*$"
+                                                                }
+                                                        }
+                                                ]
+                                        },
+                                        "inputStage" : {
+                                                "stage" : "IXSCAN",
+                                                "keyPattern" : {
+                                                        "direction" : 1,
+                                                        "trunkId" : 1
+                                                },
+                                                "indexName" : "callRecord_direction_trunkId_idx",
+                                                "isMultiKey" : false,
+                                                "multiKeyPaths" : {
+                                                        "direction" : [ ],
+                                                        "trunkId" : [ ]
+                                                },
+                                                "isUnique" : false,
+                                                "isSparse" : false,
+                                                "isPartial" : false,
+                                                "indexVersion" : 2,
+                                                "direction" : "forward",
+                                                "indexBounds" : {
+                                                        "direction" : [
+                                                                "[\"in\", \"in\"]"
+                                                        ],
+                                                        "trunkId" : [
+                                                                "[\"SIPT_4_880001\", \"SIPT_4_880001\"]"
+                                                        ]
+                                                }
+                                        }
+                                }
+                        },
+                        {
+                                "stage" : "LIMIT",
+                                "limitAmount" : 15,
+                                "inputStage" : {
+                                        "stage" : "FETCH",
+                                        "filter" : {
+                                                "$and" : [
+                                                        {
+                                                                "direction" : {
+                                                                        "$eq" : "in"
+                                                                }
+                                                        },
+                                                        {
+                                                                "trunkId" : {
+                                                                        "$eq" : "SIPT_4_880001"
+                                                                }
+                                                        },
+                                                        {
+                                                                "called" : {
+                                                                        "$regex" : "^.*1369.*$"
+                                                                }
+                                                        },
+                                                        {
+                                                                "calling" : {
+                                                                        "$regex" : "^.*290727.*$"
+                                                                }
+                                                        },
+                                                        {
+                                                                "wireNumber" : {
+                                                                        "$regex" : "^.*0551.*$"
+                                                                }
+                                                        }
+                                                ]
+                                        },
+                                        "inputStage" : {
+                                                "stage" : "IXSCAN",
+                                                "keyPattern" : {
+                                                        "tenementId" : 1,
+                                                        "beginTime" : 1,
+                                                        "endTime" : 1
+                                                },
+                                                "indexName" : "callRecord_tenementId_beginTime_endTime_idx",
+                                                "isMultiKey" : false,
+                                                "multiKeyPaths" : {
+                                                        "tenementId" : [ ],
+                                                        "beginTime" : [ ],
+                                                        "endTime" : [ ]
+                                                },
+                                                "isUnique" : false,
+                                                "isSparse" : false,
+                                                "isPartial" : false,
+                                                "indexVersion" : 2,
+                                                "direction" : "forward",
+                                                "indexBounds" : {
+                                                        "tenementId" : [
+                                                                "[\"880001\", \"880001\"]"
+                                                        ],
+                                                        "beginTime" : [
+                                                                "[1548000000000.0, 1550764799000.0]"
+                                                        ],
+                                                        "endTime" : [
+                                                                "[MinKey, MaxKey]"
+                                                        ]
+                                                }
+                                        }
+                                }
+                        },
+                        {
+                                "stage" : "LIMIT",
+                                "limitAmount" : 15,
+                                "inputStage" : {
+                                        "stage" : "FETCH",
+                                        "filter" : {
+                                                "$and" : [
+                                                        {
+                                                                "direction" : {
+                                                                        "$eq" : "in"
+                                                                }
+                                                        },
+                                                        {
+                                                                "trunkId" : {
+                                                                        "$eq" : "SIPT_4_880001"
+                                                                }
+                                                        },
+                                                        {
+                                                                "beginTime" : {
+                                                                        "$lte" : 1550764799000
+                                                                }
+                                                        },
+                                                        {
+                                                                "beginTime" : {
+                                                                        "$gte" : 1548000000000
+                                                                }
+                                                        },
+                                                        {
+                                                                "called" : {
+                                                                        "$regex" : "^.*1369.*$"
+                                                                }
+                                                        },
+                                                        {
+                                                                "calling" : {
+                                                                        "$regex" : "^.*290727.*$"
+                                                                }
+                                                        },
+                                                        {
+                                                                "wireNumber" : {
+                                                                        "$regex" : "^.*0551.*$"
+                                                                }
+                                                        }
+                                                ]
+                                        },
+                                        "inputStage" : {
+                                                "stage" : "IXSCAN",
+                                                "keyPattern" : {
+                                                        "tenementId" : 1
+                                                },
+                                                "indexName" : "tenementId",
+                                                "isMultiKey" : false,
+                                                "multiKeyPaths" : {
+                                                        "tenementId" : [ ]
+                                                },
+                                                "isUnique" : false,
+                                                "isSparse" : false,
+                                                "isPartial" : false,
+                                                "indexVersion" : 2,
+                                                "direction" : "forward",
+                                                "indexBounds" : {
+                                                        "tenementId" : [
+                                                                "[\"880001\", \"880001\"]"
+                                                        ]
+                                                }
+                                        }
+                                }
+                        }
+                ]
+        },
+        "serverInfo" : {
+                "host" : "data-2",
+                "port" : 27017,
+                "version" : "3.4.2",
+                "gitVersion" : "3f76e40c105fc223b3e5aac3e20dcd026b83b38b"
+        },
+        "ok" : 1
+}
