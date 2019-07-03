@@ -1,0 +1,196 @@
+2019-02-22T09:32:16.777+0800 I COMMAND  [conn163] command gzbsms.ucCallRecord command: find { find: "ucCallRecord", filter: { $and: [ { tenementId: { $in: [ "880001" ] } }, { calling: /^.*290727.*$/ }, { called: /^.*1369.*$/ }, { direction: "in" }, { trunkId: "SIPT_4_880001" }, { wireNumber: /^.*0551.*$/ }, { beginTime: { $gte: 1548000000000 } }, { beginTime: { $lte: 1550764799000 } } ] }, sort: { beginTime: -1 }, limit: 15 }planSummary: IXSCAN { direction: 1 } keysExamined:3511273 docsExamined:3511273 hasSortStage:1 cursorExhausted:1 numYields:27508 nreturned:0 reslen:107 locks:{ Global: { acquireCount: { r: 55018 }, acquireWaitCount:{ r: 114 }, timeAcquiringMicros: { r: 136482 } }, Database: { acquireCount: { r: 27509 } }, Collection: { acquireCount: { r: 27509 } } } protocol:op_query 20453ms
+
+
+
+
+2019-02-22T09:33:00.399+0800 I COMMAND  [conn167] command gzbsms.ucCallRecord command: find { find: "ucCallRecord", filter: { $and: [ { tenementId: { $in: [ "880001" ] } }, { calling: /^.*290727.*$/ }, { called: /^.*1369.*$/ }, { direction: "in" }, { trunkId: "SIPT_4_880001" }, { wireNumber: /^.*0551.*$/ }, { beginTime: { $gte: 1548000000000 } }, { beginTime: { $lte: 1550764799000 } } ] }, sort: { beginTime: -1 }, limit: 15 }planSummary: IXSCAN { direction: 1 } keysExamined:3511273 docsExamined:3511273 hasSortStage:1 cursorExhausted:1 numYields:27491 nreturned:0 reslen:107 locks:{ Global: { acquireCount: { r: 54984 }, acquireWaitCount:{ r: 29 }, timeAcquiringMicros: { r: 28197 } }, Database: { acquireCount: { r: 27492 } }, Collection: { acquireCount: { r: 27492 } } } protocol:op_query 19541ms
+
+
+2019-02-22T09:32:16.777+0800 I COMMAND  [conn163] command gzbsms.ucCallRecord command: find { find: "ucCallRecord", filter: { $and: [ { tenementId: { $in: [ "880001" ] } }, { calling: /^.*290727.*$/ }, { called: /^.*1369.*$/ }, { direction: "in" }, { trunkId: "SIPT_4_880001" }, { wireNumber: /^.*0551.*$/ }, { beginTime: { $gte: 1548000000000 } }, { beginTime: { $lte: 1550764799000 } } ] }, sort: { beginTime: -1 }, limit: 15 }planSummary: IXSCAN { direction: 1 } keysExamined:3511273 docsExamined:3511273 hasSortStage:1 cursorExhausted:1 numYields:27508 nreturned:0 reslen:107 locks:{ Global: { acquireCount: { r: 55018 }, acquireWaitCount:{ r: 114 }, timeAcquiringMicros: { r: 136482 } }, Database: { acquireCount: { r: 27509 } }, Collection: { acquireCount: { r: 27509 } } } protocol:op_query 20453ms
+
+
+2019-02-22T09:33:00.399+0800 I COMMAND  [conn167] command gzbsms.ucCallRecord command: find { find: "ucCallRecord", filter: { $and: [ { tenementId: { $in: [ "880001" ] } }, { calling: /^.*290727.*$/ }, { called: /^.*1369.*$/ }, { direction: "in" }, { trunkId: "SIPT_4_880001" }, { wireNumber: /^.*0551.*$/ }, { beginTime: { $gte: 1548000000000 } }, { beginTime: { $lte: 1550764799000 } } ] }, sort: { beginTime: -1 }, limit: 15 }planSummary: IXSCAN { direction: 1 } keysExamined:3511273 docsExamined:3511273 hasSortStage:1 cursorExhausted:1 numYields:27491 nreturned:0 reslen:107 locks:{ Global: { acquireCount: { r: 54984 }, acquireWaitCount:{ r: 29 }, timeAcquiringMicros: { r: 28197 } }, Database: { acquireCount: { r: 27492 } }, Collection: { acquireCount: { r: 27492 } } } protocol:op_query 19541ms
+
+
+2019-02-22T09:38:45.199+0800 I COMMAND  [conn167] command gzbsms.ucCallRecord command: count { count: "ucCallRecord", query: { $and: [ { tenementId: { $in: [ "880001" ] } }, { direction: "in" }, { trunkId: "SIPT_4_880001" }, { beginTime: { $gte: 1548000000000 } }, { endTime: { $lte: 1550764799000 } }, { direction: "in" } ] } } planSummary: IXSCAN { beginTime: 1, tenementId: 1 } keysExamined:3964340 docsExamined:3963450 fromMultiPlanner:1 numYields:31055 reslen:44 locks:{ Global: { acquireCount: { r: 62112 }, acquireWaitCount: { r: 101 }, timeAcquiringMicros: { r: 58944 } }, Database: { acquireCount: { r: 31056 } }, Collection: { acquireCount: { r: 31056 } } } protocol:op_query 13118ms
+
+
+
+
+
+
+{
+        "ns" : "gzbsms.gzbsms",
+        "ok" : 0,
+        "errmsg" : "Collection [gzbsms.gzbsms] not found."
+}
+gzb:PRIMARY> db.ucCallRecord.stats();
+{
+        "ns" : "gzbsms.ucCallRecord",
+        "size" : 21354683295,
+        "count" : 25325421,
+        "avgObjSize" : 843,
+        "storageSize" : 6303383552,
+        "capped" : false,
+        "wiredTiger" : {
+                "metadata" : {
+                        "formatVersion" : 1
+                },
+                "creationString" : "access_pattern_hint=none,allocation_size=4KB,app_metadata=(formatVersion=1),block_allocation=best,block_compressor=snappy,cache_resident=false,checksum=on,colgroups=,collator=,columns=,dictionary=0,encryption=(keyid=,name=),exclusive=false,extractor=,format=btree,huffman_key=,huffman_value=,ignore_in_memory_cache_size=false,immutable=false,internal_item_max=0,internal_key_max=0,internal_key_truncate=true,internal_page_max=4KB,key_format=q,key_gap=10,leaf_item_max=0,leaf_key_max=0,leaf_page_max=32KB,leaf_value_max=64MB,log=(enabled=true),lsm=(auto_throttle=true,bloom=true,bloom_bit_count=16,bloom_config=,bloom_hash_count=8,bloom_oldest=false,chunk_count_limit=0,chunk_max=5GB,chunk_size=10MB,merge_max=15,merge_min=0),memory_page_max=10m,os_cache_dirty_max=0,os_cache_max=0,prefix_compression=false,prefix_compression_min=4,source=,split_deepen_min_child=0,split_deepen_per_child=0,split_pct=90,type=file,value_format=u",
+                "type" : "file",
+                "uri" : "statistics:table:gzbsms/collection/73-7798578374548549125",
+                "LSM" : {
+                        "bloom filter false positives" : 0,
+                        "bloom filter hits" : 0,
+                        "bloom filter misses" : 0,
+                        "bloom filter pages evicted from cache" : 0,
+                        "bloom filter pages read into cache" : 0,
+                        "bloom filters in the LSM tree" : 0,
+                        "chunks in the LSM tree" : 0,
+                        "highest merge generation in the LSM tree" : 0,
+                        "queries that could have benefited from a Bloom filter that did not exist" : 0,
+                        "sleep for LSM checkpoint throttle" : 0,
+                        "sleep for LSM merge throttle" : 0,
+                        "total size of bloom filters" : 0
+                },
+                "block-manager" : {
+                        "allocations requiring file extension" : 791906,
+                        "blocks allocated" : 2711468,
+                        "blocks freed" : 1142790,
+                        "checkpoint size" : 6303076352,
+                        "file allocation unit size" : 4096,
+                        "file bytes available for reuse" : 290816,
+                        "file magic number" : 120897,
+                        "file major version number" : 1,
+                        "file size in bytes" : 6303383552,
+                        "minor version number" : 0
+                },
+                "btree" : {
+                        "btree checkpoint generation" : 361899,
+                        "column-store fixed-size leaf pages" : 0,
+                        "column-store internal pages" : 0,
+                        "column-store variable-size RLE encoded values" : 0,
+                        "column-store variable-size deleted values" : 0,
+                        "column-store variable-size leaf pages" : 0,
+                        "fixed-record size" : 0,
+                        "maximum internal page key size" : 368,
+                        "maximum internal page size" : 4096,
+                        "maximum leaf page key size" : 2867,
+                        "maximum leaf page size" : 32768,
+                        "maximum leaf page value size" : 67108864,
+                        "maximum tree depth" : 4,
+                        "number of key/value pairs" : 0,
+                        "overflow pages" : 0,
+                        "pages rewritten by compaction" : 0,
+                        "row-store internal pages" : 0,
+                        "row-store leaf pages" : 0
+                },
+                "cache" : {
+                        "bytes currently in the cache" : 8157844684,
+                        "bytes read into cache" : 541469874464,
+                        "bytes written from cache" : 36636359751,
+                        "checkpoint blocked page eviction" : 3,
+                        "data source pages selected for eviction unable to be evicted" : 3935,
+                        "hazard pointer blocked page eviction" : 3512,
+                        "in-memory page passed criteria to be split" : 8530,
+                        "in-memory page splits" : 4265,
+                        "internal pages evicted" : 72300,
+                        "internal pages split during eviction" : 63,
+                        "leaf pages split during eviction" : 4449,
+                        "modified pages evicted" : 9450,
+                        "overflow pages read into cache" : 0,
+                        "overflow values cached in memory" : 0,
+                        "page split during eviction deepened the tree" : 1,
+                        "page written requiring lookaside records" : 0,
+                        "pages read into cache" : 19297213,
+                        "pages read into cache requiring lookaside entries" : 0,
+                        "pages requested from the cache" : 172916768,
+                        "pages written from cache" : 2182069,
+                        "pages written requiring in-memory restoration" : 0,
+                        "unmodified pages evicted" : 19100649
+                },
+                "cache_walk" : {
+                        "Average difference between current eviction generation when the page was last considered" : 0,
+                        "Average on-disk page image size seen" : 0,
+                        "Clean pages currently in cache" : 0,
+                        "Current eviction generation" : 0,
+                        "Dirty pages currently in cache" : 0,
+                        "Entries in the root page" : 0,
+                        "Internal pages currently in cache" : 0,
+                        "Leaf pages currently in cache" : 0,
+                        "Maximum difference between current eviction generation when the page was last considered" : 0,
+                        "Maximum page size seen" : 0,
+                        "Minimum on-disk page image size seen" : 0,
+                        "On-disk page image sizes smaller than a single allocation unit" : 0,
+                        "Pages created in memory and never written" : 0,
+                        "Pages currently queued for eviction" : 0,
+                        "Pages that could not be queued for eviction" : 0,
+                        "Refs skipped during cache traversal" : 0,
+                        "Size of the root page" : 0,
+                        "Total number of pages currently in cache" : 0
+                },
+                "compression" : {
+                        "compressed pages read" : 19212450,
+                        "compressed pages written" : 1348601,
+                        "page written failed to compress" : 0,
+                        "page written was too small to compress" : 833468,
+                        "raw compression call failed, additional data available" : 0,
+                        "raw compression call failed, no additional data available" : 0,
+                        "raw compression call succeeded" : 0
+                },
+                "cursor" : {
+                        "bulk-loaded cursor-insert calls" : 0,
+                        "create calls" : 2236,
+                        "cursor-insert key and value bytes inserted" : 34563904628,
+                        "cursor-remove key bytes removed" : 0,
+                        "cursor-update value bytes updated" : 0,
+                        "insert calls" : 37400628,
+                        "next calls" : 1552809510,
+                        "prev calls" : 1,
+                        "remove calls" : 0,
+                        "reset calls" : 73825563,
+                        "restarted searches" : 0,
+                        "search calls" : 24150414,
+                        "search near calls" : 12216835,
+                        "truncate calls" : 0,
+                        "update calls" : 0
+                },
+                "reconciliation" : {
+                        "dictionary matches" : 0,
+                        "fast-path pages deleted" : 0,
+                        "internal page key bytes discarded using suffix compression" : 24024946,
+                        "internal page multi-block writes" : 455466,
+                        "internal-page overflow keys" : 0,
+                        "leaf page key bytes discarded using prefix compression" : 0,
+                        "leaf page multi-block writes" : 266343,
+                        "leaf-page overflow keys" : 0,
+                        "maximum blocks required for a page" : 105,
+                        "overflow values written" : 0,
+                        "page checksum matches" : 56671018,
+                        "page reconciliation calls" : 999745,
+                        "page reconciliation calls for eviction" : 550,
+                        "pages deleted" : 13
+                },
+                "session" : {
+                        "object compaction" : 0,
+                        "open cursor count" : 22
+                },
+                "transaction" : {
+                        "update conflicts" : 0
+                }
+        },
+        "nindexes" : 9,
+        "totalIndexSize" : 1735766016,
+        "indexSizes" : {
+                "_id_" : 233111552,
+                "callRecord_tenementId_beginTime_endTime_idx" : 334065664,
+                "callRecord_beginTime_endTime_tenementId_idx" : 515788800,
+                "tenementId" : 79269888,
+                "direction" : 80044032,
+                "trunkId" : 79245312,
+                "monthSetId" : 80076800,
+                "callRecord_direction_trunkId_idx" : 82444288,
+                "callRecord_beginTime_tenementId_idx" : 251719680
+        },
+        "ok" : 1
+}
