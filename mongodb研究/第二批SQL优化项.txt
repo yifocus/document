@@ -1,0 +1,40 @@
+//已优化, 第一批7条中的一条
+select AutoID,StartTime,EndTime,CallerUID,CallerNumber,
+InTrunkUID,InTrunkOwNumber,CalleeUID,CalleeDialed,
+OutTrunkUID,OutTrunkOwNumber,ReplaceCallee,RouteCaller,
+TenantID,CalledResult,FailCode,CallType,
+BusinessCode,CdrID, CallerDepIDs,CalleeDepIDs
+from smdr.smdr_v01_201905 force index (smdr_v01_201905_idx)
+where FailCode>=0 and 302!=FailCode and TenantID='880001' and
+(CallerUID like '%u11003%' or CalleeUID like '%u11003%') and
+(CallerNumber like '%200%' or CalleeDialed like '%200%') and
+AutoID > '20'
+order by AutoID limit 0,2;
+
+// 吴天勇
+select EndTime,CallerNumber,CalleeDialed from smdr_v01_201905 where TenantID='S' and EndTime>N and (CallerNumber!='S' or CalleeDialed!='S')
+  
+// 吴天勇
+select count(*) from smdr_v01_201905 where StartTime between N and N and BusinessCode not in ('S','S') and CallType not in ('S') and FailCode != N and FailCode >= N
+  
+// 麦景烽
+Count: 1  Time=34.33s (34s)  Lock=0.03s (0s)  Rows=1.0 (1), gzb[gzb]@[192.168.0.209]
+select 
+select idx,caller,callee,callDir,owner,ownerType,startTime,longTime,fileSize,TenantID,mark,comment,isConnected from RecordInfo_201905  where  startTime>=N  and  startTime<=N  and  (caller in ('S') or caller like "S") and  callee like "S"  and  owner in ('S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S','S')  and  isConnected=N  order by startTime desc limit N,N
+
+  
+// 麦景烽
+Count: 179  Time=0.30s (54s)  Lock=0.01s (1s)  Rows=3.3 (597), root[root]@[192.168.249.75]
+  SELECT username as `name`,itemId as `value`
+  FROM (SELECT m.username,c.itemId
+  FROM ucTenementMember m,ucVCardItem c,ucDepartmentUser u 
+  WHERE (m.tenementId IN ('S') AND m.username=c.username AND m.username=u.username AND u.departmentId IN ('S','S','S','S','S','S','S','S','S','S','S') AND c.`value` LIKE 'S' AND c.itemId NOT IN ('S','S')) 
+  UNION 
+  SELECT f.friendId as username,c.itemId
+  FROM ucFriend f,ucVCardItem c
+  WHERE (f.username='S' AND f.friendId=c.username AND c.`value` LIKE 'S' AND c.itemId NOT IN ('S','S'))) as t
+  GROUP BY username LIMIT N,N
+  
+// 麦景烽
+Count: 47  Time=0.11s (5s)  Lock=0.00s (0s)  Rows=1.3 (62), root[root]@[10.81.54.107]
+  select * from (select t.messageId,t.publicAccountId,t.sender,t.type,t.content,t.receiverCount,t.receivers,t.readUserCount,t.readUsers,t.creationDate,SUBSTR(t.contentsub FROM LOCATE('S',t.contentsub) FOR LOCATE('S', t.contentsub,LOCATE('S',t.contentsub))-N) as title from(SELECT *,SUBSTR(content FROM LOCATE('S',content) FOR LOCATE('S', content,LOCATE('S',content))) as contentsub FROM ucPublicAccountPushMessage WHERE publicAccountId = 'S') as t) as pm WHERE pm.creationDate BETWEEN N AND N ORDER BY pm.creationDate DESC
